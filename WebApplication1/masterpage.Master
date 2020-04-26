@@ -1,0 +1,165 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="masterpage.Master.cs" Inherits="WebApplication1.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+     <link rel="stylesheet" href="css/menu.css" type="text/css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style>
+        body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333; 
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.subnav {
+  float: left;
+  overflow: hidden;
+}
+
+.subnav .subnavbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .subnav:hover .subnavbtn {
+  background-color: red;
+}
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: red;
+  width: 100%;
+  z-index: 1;
+}
+
+.subnav-content a {
+  float: left;
+  color: white;
+  text-decoration: none;
+}
+
+.subnav-content a:hover {
+  background-color: #eee;
+  color: black;
+}
+
+.subnav:hover .subnav-content {
+  display: block;
+}
+
+.topnav-right {
+  float: right;
+
+}
+
+.topnav-centered a {
+  float: none;
+  position: absolute;
+  top: 22.5px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.glow {
+  font-size: 180px;
+  color:#ff6a00;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #333, 0 0 20px #333, 0 0 30px #333, 0 0 40px #333, 0 0 50px #333, 0 0 60px #333, 0 0 70px #333;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #ff6a00, 0 0 30px #ff6a00, 0 0 40px #ff6a00, 0 0 50px #ff6a00, 0 0 60px #ff6a00, 0 0 70px #ff6a00, 0 0 80px #ff6a00;
+  }
+}
+    </style>
+
+</head>
+
+<body>
+
+   <div class="navbar">
+       <a href="homepage.aspx"><i class="fas fa-home"></i>  Homepage</a>
+
+       <div class="subnav">
+       <button class="subnavbtn"> Gamemodes <i class="fa fa-caret-down"></i></button>
+       <div class="subnav-content">
+       <a href="battle_royale.aspx"> <i class="fab fa-fort-awesome"></i> BattleRoyale </a>
+       <a href="SaveTheWorld.aspx"> <i class="fas fa-satellite-dish"></i> SaveTheWorld </a>
+       <a href="creative.aspx"> <i class="fas fa-city"></i> creative </a>
+       </div>
+       </div> 
+
+       <a href="registeration.aspx"><i class="fas fa-key"></i> Registeration</a>
+       <a href="strategies.aspx">Strategies</a>
+       <a href="fortnitevideos.aspx">Fortnite Videos</a>
+
+       <div class="topnav-right"><%=loggedin%></div>
+
+        <div class="topnav-right"><a href="Update.data1.aspx" > Update Data</a>
+            
+        </div>
+            <script >
+                var userLoggedIn = Session["LoggedIn"];                
+            </script>      
+       
+       <div class="topnav-centered"><div class="glow" ><a> FORTNITE </a></div> </div> 
+
+       <div class="topnav-right" id="admin">
+           <a href="admin.aspx" >Admin</a>
+           <script type="text/javascript">
+               var isAdmin = '<%=Session["admin"]%>'
+               if (isAdmin == "1")
+                   document.getElementById("admin").style.visibility = "visible"
+               else
+                   document.getElementById("admin").style.visibility = "hidden"
+             
+           
+              
+           </script>
+       </div>
+       
+   </div>
+
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+   
+</body>
+</html>
+
+   
